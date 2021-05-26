@@ -33,10 +33,35 @@ app.post('/products', (request, response) => {
 
 app.put('/products/:id', (request, response) => {
   // TODO: Desenvolver atualização de produto por ID
+  const { id } = request.params;
+
+  const { description, buyPrice, sellPrice, tags } = request.body;
+
+  const p = products.find((v) => v.id == id);
+
+  if(p){
+    p.description = description;
+    p.buyPrice = buyPrice;
+    p.sellPrice = sellPrice;
+    p.tags = tags;
+    
+    response.json(p);
+  }else{
+    response.status(400).send();
+  }
 });
 
 app.delete('/products/:code', (request, response) => {
   // TODO: Remove TODOS os produtos que possuam o código passado por parâmetro
+  const { code } = request.params;
+  const index = products.findIndex((v) => v.code == code);
+
+  if(index == -1){
+    response.status(400).send();
+  }else {
+    products = products.filter((v) => v.code !== code);
+    response.status(204).send();
+  }
 });
 
 app.post('/products/:code/love', (request, response) => {

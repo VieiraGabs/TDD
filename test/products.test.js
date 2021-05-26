@@ -53,5 +53,35 @@ test('Deve ser possível atualizar dados de um produto', async() => {
   .put(`/products/${response.body.id}`)
   .send(updateProduct);
 
-  expect()
+  expect(responseUpdate.body).toMatchObject(updateProduct);
+})
+
+test('Não deve ser possível atualizar um produto inexistente', async() => {
+  await request(app)
+  .put('/products/9198123')
+  .expect(400);
+});
+
+test('Não deve ser possível remover um produto inexistente', async() => {
+  await request(app)
+  .delete('/products/9198123')
+  .expect(400);
+});
+
+test('Deve retornar o código 204 quando um produto for removido', async () => {
+  const response = await request(app)
+  .post('/products')
+  .send (products[0]);
+
+  await request(app)
+  .delete(`/products/${response.body.code}`)
+  .expect(204);
+});
+
+test('Deve ser possível listar todos os produtos', async () => {
+  
+});
+
+test('Deve ser possível remover os produtos pelo código', async () => {
+  //
 })
