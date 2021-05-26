@@ -10,15 +10,29 @@ app.use(cors());
 let products = [];
 
 app.get('/products', (request, response) => {
-  // TODO: listagem de todos os produtos
+  // TODO: Desenvolver listagem
 });
 
 app.post('/products', (request, response) => {
-  // TODO: Salvar produto no array products
+  // TODO: Desenvolver registro no array products
+  const { code, description, buyPrice, sellPrice, tags } = request.body;
+  const p = products.find((v) => v.code == code);
+  const lov = p ? p.lovers : 0;
+  const product = {
+    id: uuid(),
+    code,
+    description,
+    buyPrice,
+    sellPrice,
+    tags,
+    lovers: lov,
+  };
+  products.push(product);
+  response.status(201).json(product);
 });
 
 app.put('/products/:id', (request, response) => {
-  // TODO: Atualiza produto por ID
+  // TODO: Desenvolver atualização de produto por ID
 });
 
 app.delete('/products/:code', (request, response) => {
