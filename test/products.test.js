@@ -110,3 +110,17 @@ test('Deve ser possível remover os produtos pelo código', async () => {
 
   expect(responseAll.body).toHaveLength(1);
 });
+
+test('Deve ser possível dar love em um produto', async () => {
+  const response = await request(app)
+  .post('/products')
+  .send(products[0]);
+
+  const responseLove = await request(app)
+  .post(`/products/${response.body.code}/love`)
+  .send(response.body);
+
+  expect(responseLove.body).toMatchObject({
+    lovers: 1,
+  });
+});

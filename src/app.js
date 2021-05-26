@@ -66,8 +66,20 @@ app.delete('/products/:code', (request, response) => {
 });
 
 app.post('/products/:code/love', (request, response) => {
-  // TODO: Incrementa em 1 o número de lovers de todos os produtos que possuam 
-  // o code do parâmetro
+  const { code } = request.params;
+
+  const p = products.find((v) => v.code == code);
+
+  if(!p) {
+    response.status(400).send();
+  }else {
+    products.filter((v) => v.code == code)
+    .map((val) => val.lovers += 1);
+    
+    response.json({
+      lovers: p.lovers,
+    });
+  }
 });
 
 app.get('/products/:code', (request, response) => {
