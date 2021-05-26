@@ -11,6 +11,7 @@ let products = [];
 
 app.get('/products', (request, response) => {
   // TODO: Desenvolver listagem
+  response.json(products);
 });
 
 app.post('/products', (request, response) => {

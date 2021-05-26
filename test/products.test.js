@@ -79,9 +79,34 @@ test('Deve retornar o código 204 quando um produto for removido', async () => {
 });
 
 test('Deve ser possível listar todos os produtos', async () => {
-  
+  const response = await request(app)
+  .post('/products')
+  .send(products[0]);
+
+  const responseGet = await request(app)
+  .get('/products');
+
+  expect(responseGet.body).toHaveLength(1);
 });
 
 test('Deve ser possível remover os produtos pelo código', async () => {
-  //
-})
+  await request(app)
+  .post('/products')
+  .send(products[0]);
+
+  const response = await request(app)
+  .post('/products')
+  .send(products[0]);
+
+  await request(app)
+  .post('/products')
+  .send(products[1]);
+
+  await request(app)
+  .delete(`/products/${response.body.code}`);
+
+  const responseAll = await request(app)
+  .get('/products');
+
+  expect(responseAll.body).toHaveLength(1);
+});
