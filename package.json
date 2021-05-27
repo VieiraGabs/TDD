@@ -4,24 +4,32 @@
   "description": "",
   "main": "src/server.js",
   "scripts": {
-    "test": "jest",
-    "build": "sucrase ./src -d ./dist --transforms imports",
-    "dev": "nodemon src/server.js",
-    "start": "node dist/server.js"
-  },
-  "nodemonConfig": {
-    "execMap": {
-      "js": "node -r sucrase/register"
-    }
-  },
-  "jest": {
-    "transform": {
-      ".(js|jsx|ts|tsx)": "@sucrase/jest-plugin"
-    }
+      "test": "jest",
+      "build": "sucrase ./src -d ./dist --transforms imports",
+      "dev": "nodemon src/server.js",
+      "start": "node dist/server.js"
+    },
+    "nodemonConfig": {
+      "execMap": {
+        "js": "node -r sucrase/register"
+      }
+    },
+    "jest": {
+      "transform": {
+        ".(js|jsx|ts|tsx)": "@sucrase/jest-plugin"
+      }
+    },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VieiraGabs/TDD.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VieiraGabs/TDD/issues"
+  },
+  "homepage": "https://github.com/VieiraGabs/TDD#readme",
   "devDependencies": {
     "@sucrase/jest-plugin": "^2.1.0",
     "jest": "^27.0.1",
@@ -30,8 +38,6 @@
   },
   "dependencies": {
     "@types/jest": "^26.0.23",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "uuid": "^8.3.2"
+    "express": "^4.17.1"
   }
 }

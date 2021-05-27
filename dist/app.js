@@ -1,12 +1,12 @@
-import express from 'express';
-import cors from 'cors';
-import { uuid } from 'uuidv4';
-import Product from '../src/models/product';
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _express = require('express'); var _express2 = _interopRequireDefault(_express);
+var _cors = require('cors'); var _cors2 = _interopRequireDefault(_cors);
+var _uuidv4 = require('uuidv4');
+var _product = require('../src/models/product'); var _product2 = _interopRequireDefault(_product);
 
-const app = express();
+const app = _express2.default.call(void 0, );
 
-app.use(express.json());
-app.use(cors());
+app.use(_express2.default.json());
+app.use(_cors2.default.call(void 0, ));
 
 let products = [];
 
@@ -20,7 +20,7 @@ app.post('/products', (request, response) => {
   const { code, description, buyPrice, sellPrice, tags } = request.body;
   const p = products.find((v) => v.code == code);
   const lov = p ? p.lovers : 0;
-  const product = new Product(code, description, buyPrice, sellPrice, tags, lov, id);
+  const product = new (0, _product2.default)(code, description, buyPrice, sellPrice, tags, lov, id);
  
   products.push(product);
   response.status(201).json(product);
@@ -80,4 +80,4 @@ app.get('/products/:code', (request, response) => {
   // TODO: Busca de todos os produtos com o código recebido por parâmetro.
 });
 
-export default app;
+exports. default = app;

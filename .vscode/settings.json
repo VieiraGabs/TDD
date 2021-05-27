@@ -1,7 +1,9 @@
 {
   "cSpell.ignoreWords": [
     "asus",
+    "uuid",
     "vostro",
     "zenfone"
-  ]
+  ],
+  "git.ignoreLimitWarning": true
 }
